@@ -69,6 +69,7 @@
 #include <stdlib.h>
 #include "main.h"
 #include "ws2812b.h"
+#include "equalizer.h"
 
 /* Private includes ----------------------------------------------------------*/
 
@@ -95,6 +96,7 @@ static void MX_GPIO_Init(void);
 int main( void )
 {
    uint32_t i=0;
+   FlagStatus up=SET;
   
    // Reset of all peripherals, Initializes the Flash interface and the Systick.
    HAL_Init();
@@ -108,11 +110,35 @@ int main( void )
    // init peripherals for using the ws2812b leds
    WS2812B_init();
    
+   // equalizer init
+   equalizer_init();
+   
    while (1)
    {
-      WS2812B_clearBuffer();
-      WS2812B_setPixel( 0, ++i%COL, rand()%0xFF, rand()%0xFF, rand()%0xFF );
-      WS2812B_sendBuffer();
+      //WS2812B_clearBuffer();
+      //WS2812B_setPixel( 0, ++i%COL, rand()%0xFF, rand()%0xFF, rand()%0xFF );
+      //WS2812B_sendBuffer();
+      //HAL_Delay(10);
+      if( up == SET )
+      {
+         i++;
+         
+         if( i == COL )
+         {
+            up = RESET;
+         }
+      }
+      else
+      {
+         i--;
+         
+         if( i == 0 )
+         {
+            up = SET;
+         }
+      }
+      
+      equalizer_set(i);
       HAL_Delay(10);
    }
 }

@@ -1485,6 +1485,9 @@
             <group>
                 <name>Inc</name>
                 <file>
+                    <name>$PROJ_DIR$\..\Inc\equalizer.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Inc\main.h</name>
                 </file>
                 <file>
@@ -1499,6 +1502,9 @@
             </group>
             <group>
                 <name>Src</name>
+                <file>
+                    <name>$PROJ_DIR$\..\Src\equalizer.c</name>
+                </file>
                 <file>
                     <name>$PROJ_DIR$\..\Src\main.c</name>
                 </file>

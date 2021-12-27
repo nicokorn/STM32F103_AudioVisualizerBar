@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 }
 else
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" --debug_file=$debugfile --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.general.xcl" --debug_file=$debugfile --backend -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 }

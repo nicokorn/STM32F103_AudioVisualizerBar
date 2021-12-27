@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.general.xcl" --backend -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.general.xcl" "--debug_file=%~1" --backend -f "D:\GitHub\STM32F1XX_WS2812B\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.general.xcl" "--debug_file=%~1" --backend -f "D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\settings\WS2812B.WS2812B.driver.xcl" 
 
 @echo off 
 :end
