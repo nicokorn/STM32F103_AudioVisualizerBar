@@ -1,0 +1,297 @@
+###############################################################################
+#
+# IAR ELF Linker V9.10.1.308/W64 for ARM                  22/Aug/2021  18:31:51
+# Copyright 2007-2021 IAR Systems AB.
+#
+#    Output file  =  D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out
+#    Map file     =  D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\List\WS2812B.map
+#    Command line =
+#        -f D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out.rsp
+#        (D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src\main.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\startup_stm32f103xb.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_cortex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_dma.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_exti.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_flash.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_flash_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_gpio.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_gpio_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src\stm32f1xx_hal_msp.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_pwr.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_rcc.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_rcc_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_tim.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_tim_ex.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src\stm32f1xx_it.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\CMSIS\system_stm32f1xx.o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src\ws2812b.o
+#        --no_out_extension -o
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Exe\WS2812B.out --redirect
+#        _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --map
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\List\WS2812B.map --config
+#        D:\GitHub\STM32F1XX_WS2812B\EWARM/stm32f103xb_flash.icf --semihosting
+#        --entry __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because some modules are built with
+size limitations (and not runtime checking), and --advanced_heap
+was not specified.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at address 0x800'0000 { ro section .intvec };
+"P1":  place in [from 0x800'0000 to 0x801'ffff] { ro };
+define block CSTACK with size = 1K, alignment = 8 { };
+define block HEAP with size = 512, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2000'4fff] {
+          rw, block CSTACK, block HEAP };
+initialize by copy { rw };
+
+  Section            Kind         Address   Size  Object
+  -------            ----         -------   ----  ------
+"A0":                                       0xec
+  .intvec            ro code   0x800'0000   0xec  startup_stm32f103xb.o [1]
+                             - 0x800'00ec   0xec
+
+"P1":                                      0x38a
+  .text              ro code   0x800'00ec  0x150  stm32f1xx_hal_dma.o [3]
+  .text              ro code   0x800'023c   0x4c  ws2812b.o [4]
+  .text              ro code   0x800'0288   0x1c  stm32f1xx_hal_cortex.o [3]
+  .text              ro code   0x800'02a4   0x3a  packbits_init_single.o [6]
+  .text              ro code   0x800'02e0   0x28  data_init.o [6]
+  .iar.init_table    const     0x800'0308   0x10  - Linker created -
+  .text              ro code   0x800'0318   0x1e  cmain.o [6]
+  .text              ro code   0x800'0336    0x4  low_level_init.o [5]
+  .text              ro code   0x800'033a    0x4  main.o [4]
+  .text              ro code   0x800'033e    0x4  exit.o [5]
+  .text              ro code   0x800'0344    0xa  cexit.o [6]
+  .text              ro code   0x800'0350   0x14  exit.o [7]
+  .text              ro code   0x800'0364   0x1c  cstartup_M.o [6]
+  .text              ro code   0x800'0380   0x14  stm32f1xx_it.o [4]
+  .text              ro code   0x800'0394   0x10  stm32f1xx_hal.o [3]
+  .text              ro code   0x800'03a4   0x10  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03b4    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03b8    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03bc    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03c0    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03c4    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03c8    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03cc    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03d0    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03d4    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03d8    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03dc    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03e0    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03e4    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03e8    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03ec    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03f0    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03f4    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03f8    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'03fc    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0400    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0404    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0408    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'040c    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0410    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0414    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0418    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'041c    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0420    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0424    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0428    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'042c    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0430    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0434    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0438    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'043c    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0440    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0444    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0448    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'044c    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0450    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0454    0x4  startup_stm32f103xb.o [1]
+  .text              ro code   0x800'0458    0x4  system_stm32f1xx.o [2]
+  .rodata            const     0x800'045c    0x0  packbits_init_single.o [6]
+  Initializer bytes  const     0x800'045c   0x1a  <for P2-1>
+                             - 0x800'0476  0x38a
+
+"P2", part 1 of 2:                         0x481
+  P2-1                        0x2000'0000  0x481  <Init block>
+    .data            inited   0x2000'0000    0xc  stm32f1xx_hal.o [3]
+    .data            inited   0x2000'000c  0x475  ws2812b.o [4]
+                            - 0x2000'0481  0x481
+
+"P2", part 2 of 2:                         0x400
+  CSTACK                      0x2000'0488  0x400  <Block>
+    CSTACK           uninit   0x2000'0488  0x400  <Block tail>
+                            - 0x2000'0888  0x400
+
+Unused ranges:
+
+         From           To      Size
+         ----           --      ----
+   0x800'0476   0x801'ffff  0x1'fb8a
+  0x2000'0481  0x2000'0487       0x7
+  0x2000'0888  0x2000'4fff    0x4778
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Copy/packbits (__iar_packbits_init_single3)
+    1 source range, total size 0x1a (2% of destination):
+           0x800'045c   0x1a
+    1 destination range, total size 0x481:
+          0x2000'0000  0x481
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                  ro code  ro data  rw data
+    ------                  -------  -------  -------
+command line/config:
+    -------------------------------------------------
+    Total:
+
+D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM: [1]
+    startup_stm32f103xb.o       416
+    -------------------------------------------------
+    Total:                      416
+
+D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\CMSIS: [2]
+    system_stm32f1xx.o            4
+    -------------------------------------------------
+    Total:                        4
+
+D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver: [3]
+    stm32f1xx_hal.o              16                12
+    stm32f1xx_hal_cortex.o       28
+    stm32f1xx_hal_dma.o         336
+    -------------------------------------------------
+    Total:                      380                12
+
+D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src: [4]
+    main.o                        4
+    stm32f1xx_it.o               20
+    ws2812b.o                    76       26    1'141
+    -------------------------------------------------
+    Total:                      100       26    1'141
+
+dl7M_tlf.a: [5]
+    exit.o                        4
+    low_level_init.o              4
+    -------------------------------------------------
+    Total:                        8
+
+rt7M_tl.a: [6]
+    cexit.o                      10
+    cmain.o                      30
+    cstartup_M.o                 28
+    data_init.o                  40
+    packbits_init_single.o       58
+    -------------------------------------------------
+    Total:                      166
+
+shb_l.a: [7]
+    exit.o                       20
+    -------------------------------------------------
+    Total:                       20
+
+    Gaps                          6
+    Linker created                        16    1'024
+-----------------------------------------------------
+    Grand Total:              1'100       42    2'177
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base    0x800'0308          --   Gb  - Linker created -
+.iar.init_table$$Limit   0x800'0318          --   Gb  - Linker created -
+?main                    0x800'0319         Code  Gb  cmain.o [6]
+BusFault_Handler         0x800'0387    0x2  Code  Gb  stm32f1xx_it.o [4]
+CSTACK$$Base            0x2000'0488          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'0888          --   Gb  - Linker created -
+DMA1_Channel7_IRQHandler
+                         0x800'023d    0x6  Code  Gb  ws2812b.o [4]
+DMA_HandleStruct_CC1    0x2000'0050   0x44  Data  Lc  ws2812b.o [4]
+DMA_HandleStruct_CC2    0x2000'0094   0x44  Data  Lc  ws2812b.o [4]
+DMA_HandleStruct_UEV    0x2000'000c   0x44  Data  Lc  ws2812b.o [4]
+DebugMon_Handler         0x800'038d    0x2  Code  Gb  stm32f1xx_it.o [4]
+HAL_DMA_IRQHandler       0x800'00ed  0x130  Code  Gb  stm32f1xx_hal_dma.o [3]
+HAL_IncTick              0x800'0395   0x10  Code  Gb  stm32f1xx_hal.o [3]
+HAL_NVIC_ClearPendingIRQ
+                         0x800'0289   0x16  Code  Gb  stm32f1xx_hal_cortex.o [3]
+HardFault_Handler        0x800'0383    0x2  Code  Gb  stm32f1xx_it.o [4]
+MemManage_Handler        0x800'0385    0x2  Code  Gb  stm32f1xx_it.o [4]
+NMI_Handler              0x800'0381    0x2  Code  Gb  stm32f1xx_it.o [4]
+PendSV_Handler           0x800'038f    0x2  Code  Gb  stm32f1xx_it.o [4]
+Region$$Table$$Base      0x800'0308          --   Gb  - Linker created -
+Region$$Table$$Limit     0x800'0318          --   Gb  - Linker created -
+SVC_Handler              0x800'038b    0x2  Code  Gb  stm32f1xx_it.o [4]
+SysTick_Handler          0x800'0391    0x4  Code  Gb  stm32f1xx_it.o [4]
+SystemInit               0x800'0459    0x2  Code  Gb  system_stm32f1xx.o [2]
+TIM2_Handle             0x2000'0438   0x48  Data  Lc  ws2812b.o [4]
+TIM2_IRQHandler          0x800'0243   0x3e  Code  Gb  ws2812b.o [4]
+UsageFault_Handler       0x800'0389    0x2  Code  Gb  stm32f1xx_it.o [4]
+WS2812_Buffer           0x2000'00d8  0x360  Data  Lc  ws2812b.o [4]
+WS2812_State            0x2000'0480    0x1  Data  Lc  ws2812b.o [4]
+__cmain                  0x800'0319         Code  Gb  cmain.o [6]
+__exit                   0x800'0351   0x14  Code  Gb  exit.o [7]
+__iar_data_init3         0x800'02e1   0x28  Code  Gb  data_init.o [6]
+__iar_packbits_init_single3
+                         0x800'02a5   0x3a  Code  Gb  packbits_init_single.o [6]
+__iar_program_start      0x800'0365         Code  Gb  cstartup_M.o [6]
+__low_level_init         0x800'0337    0x4  Code  Gb  low_level_init.o [5]
+__vector_table           0x800'0000         Data  Gb  startup_stm32f103xb.o [1]
+_call_main               0x800'0325         Code  Gb  cmain.o [6]
+_exit                    0x800'0345         Code  Gb  cexit.o [6]
+exit                     0x800'033f    0x4  Code  Gb  exit.o [5]
+main                     0x800'033b    0x4  Code  Gb  main.o [4]
+uwTick                  0x2000'0004    0x4  Data  Gb  stm32f1xx_hal.o [3]
+uwTickFreq              0x2000'0000    0x1  Data  Gb  stm32f1xx_hal.o [3]
+uwTickPrio              0x2000'0008    0x4  Data  Gb  stm32f1xx_hal.o [3]
+
+
+[1] = D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM
+[2] = D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\CMSIS
+[3] = D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver
+[4] = D:\GitHub\STM32F1XX_WS2812B\EWARM\WS2812B\Obj\Application\User\Src
+[5] = dl7M_tlf.a
+[6] = rt7M_tl.a
+[7] = shb_l.a
+
+  1'100 bytes of readonly  code memory
+     42 bytes of readonly  data memory
+  2'177 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
