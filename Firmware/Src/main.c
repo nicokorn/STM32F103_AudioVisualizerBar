@@ -70,6 +70,8 @@
 #include "main.h"
 #include "ws2812b.h"
 #include "equalizer.h"
+#include "touch.h"
+#include "microphone.h"
 
 /* Private includes ----------------------------------------------------------*/
 
@@ -113,6 +115,9 @@ int main( void )
    // equalizer init
    equalizer_init();
    
+   // init mode touch button
+   touch_init();
+   
    while (1)
    {
       //WS2812B_clearBuffer();
@@ -138,7 +143,7 @@ int main( void )
          }
       }
       
-      equalizer_set(i);
+      equalizer_setLevel(i);
       HAL_Delay(10);
    }
 }

@@ -48,8 +48,9 @@
 // Private define *************************************************************
 
 // Private types     **********************************************************
-typedef struct equalizer_s{
+typedef __packed struct equalizer_s{
    const uint8_t*    effect;
+   uint8_t           effectIndex;
    uint8_t           level;
 }euqalizer_t;
 
@@ -85,6 +86,8 @@ static const uint8_t effect_test[COL][3] =     { { 0xff, 0x00, 0x00 },
                                                  { 0xff, 0x00, 0x00 },
                                                  { 0xff, 0x00, 0x00 },
                                                  { 0xff, 0x00, 0x00 } };   
+
+static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_default[0][0], &effect_test[0][0]};
                                                            
 // Private function prototypes ************************************************
 
@@ -93,15 +96,18 @@ static euqalizer_t equalizer;
 
 // Functions ******************************************************************
 // ----------------------------------------------------------------------------
-/// \brief     Initialisation of the equalizer.
+/// \brief     Initialisation of the graphic equalizer.
 ///
 /// \param     none
 ///
 /// \return    none
-void equalizer_init( void )
+EQUALIZER_StatusTypeDef equalizer_init( void )
 {   
-   equalizer.effect = &effect_test[0][0];
-   equalizer.level  = 0;
+   equalizer.level         = 0;
+   equalizer.effectIndex   = 0;
+   equalizer.effect        = effects[equalizer.effectIndex%NR_OF_EFFECTS];
+   
+   return EQUALIZER_OK;
 }
 
 // ----------------------------------------------------------------------------
@@ -110,7 +116,7 @@ void equalizer_init( void )
 /// \param     none
 ///
 /// \return    none
-void equalizer_set( uint8_t level )
+void equalizer_setLevel( uint8_t level )
 {   
    if( level > COL )
    {
@@ -136,4 +142,16 @@ void equalizer_set( uint8_t level )
 void equalizer_clear( void )
 {   
 
+}
+
+// ----------------------------------------------------------------------------
+/// \brief     Choose next effect
+///
+/// \param     none
+///
+/// \return    none
+void equalizer_nextEffect( void )
+{   
+   equalizer.effectIndex++;
+   equalizer.effect        = effects[equalizer.effectIndex%NR_OF_EFFECTS];
 }

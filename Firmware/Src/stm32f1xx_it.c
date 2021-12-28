@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
+#include "touch.h"
 /* Private includes ----------------------------------------------------------*/
 
 /* Private typedef -----------------------------------------------------------*/
@@ -173,5 +174,16 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
+
+void EXTI15_10_IRQHandler(void){
+	/* EXTI line interrupt detected */
+	if(__HAL_GPIO_EXTI_GET_IT(BUTTON_MODE_PIN) != RESET){
+		/* clear interrupt pending bits */
+		__HAL_GPIO_EXTI_CLEAR_IT(BUTTON_MODE_PIN);
+		/* call callback */
+		//HAL_GPIO_EXTI_Callback(BUTTON_MODE_PIN);
+      touch_pressed();
+	}
+}
  
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -49,6 +49,7 @@
 #include "stm32f1xx_hal.h"
 
 // Exported defines ***********************************************************
+#define NR_OF_EFFECTS   ( 2u )
 
 // Exported types *************************************************************
 typedef enum
@@ -62,6 +63,7 @@ typedef enum
 } EQUALIZER_StatusTypeDef;
 
 // Exported functions *********************************************************
-void equalizer_init ( void );
-void equalizer_set   ( uint8_t level );
+EQUALIZER_StatusTypeDef    equalizer_init          ( void );
+void                       equalizer_setLevel      ( uint8_t level );
+void                       equalizer_nextEffect    ( void );
 #endif // __EQUALIZER_H

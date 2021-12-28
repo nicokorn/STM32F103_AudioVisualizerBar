@@ -1491,10 +1491,16 @@
                     <name>$PROJ_DIR$\..\Inc\main.h</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Inc\microphone.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Inc\stm32f1xx_hal_conf.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Inc\stm32f1xx_it.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Inc\touch.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Inc\ws2812b.h</name>
@@ -1509,10 +1515,16 @@
                     <name>$PROJ_DIR$\..\Src\main.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Src\mircophone.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Src\stm32f1xx_hal_msp.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Src\stm32f1xx_it.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Src\touch.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Src\ws2812b.c</name>
