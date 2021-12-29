@@ -49,10 +49,22 @@
 #include "stm32f1xx_hal.h"
 
 // Exported defines ***********************************************************
+#define MICROPHONE_ANALOG_PIN       GPIO_PIN_0
+#define MICROPHONE_DIGITAL_PIN      GPIO_PIN_1
 
 // Exported types *************************************************************
+typedef enum
+{
+   MICROPHONE_OK       = 0x00U,
+   MICROPHONE_ERROR    = 0x01U,
+   MICROPHONE_BUSY     = 0x02U,
+   MICROPHONE_TIMEOUT  = 0x03U,
+   MICROPHONE_READY    = 0x04U,
+   MICROPHONE_RESET    = 0x05U
+} MICROPHONE_StatusTypeDef;
 
 // Exported functions *********************************************************
-void microphone_init        ( void );
+MICROPHONE_StatusTypeDef   microphone_init   ( void );
+uint32_t                   microphone_getAdc ( void );
 
 #endif // __MICROPHONE_H

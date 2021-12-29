@@ -82,6 +82,8 @@
 /* Private macro -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
+static uint32_t   adcLevel;
+static uint8_t    ledLevel;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -118,32 +120,39 @@ int main( void )
    // init mode touch button
    touch_init();
    
+   // init microphone
+   microphone_init();
+   
    while (1)
    {
-      //WS2812B_clearBuffer();
-      //WS2812B_setPixel( 0, ++i%COL, rand()%0xFF, rand()%0xFF, rand()%0xFF );
-      //WS2812B_sendBuffer();
+      ////WS2812B_clearBuffer();
+      ////WS2812B_setPixel( 0, ++i%COL, rand()%0xFF, rand()%0xFF, rand()%0xFF );
+      ////WS2812B_sendBuffer();
+      ////HAL_Delay(10);
+      //if( up == SET )
+      //{
+      //   i++;
+      //   
+      //   if( i == COL-1 )
+      //   {
+      //      up = RESET;
+      //   }
+      //}
+      //else
+      //{
+      //   i--;
+      //   
+      //   if( i == 0 )
+      //   {
+      //      up = SET;
+      //   }
+      //}
+      //
+      //equalizer_setLevel(i);
       //HAL_Delay(10);
-      if( up == SET )
-      {
-         i++;
-         
-         if( i == COL )
-         {
-            up = RESET;
-         }
-      }
-      else
-      {
-         i--;
-         
-         if( i == 0 )
-         {
-            up = SET;
-         }
-      }
-      
-      equalizer_setLevel(i);
+      adcLevel = microphone_getAdc();
+      ledLevel = equalizer_convert( adcLevel );
+      equalizer_setLevel( ledLevel );
       HAL_Delay(10);
    }
 }

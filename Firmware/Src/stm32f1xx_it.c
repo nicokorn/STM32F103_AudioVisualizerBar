@@ -21,6 +21,8 @@
 #include "main.h"
 #include "stm32f1xx_it.h"
 #include "touch.h"
+#include "microphone.h"
+     
 /* Private includes ----------------------------------------------------------*/
 
 /* Private typedef -----------------------------------------------------------*/
@@ -182,6 +184,16 @@ void EXTI15_10_IRQHandler(void){
 		__HAL_GPIO_EXTI_CLEAR_IT(BUTTON_MODE_PIN);
 		/* call callback */
 		//HAL_GPIO_EXTI_Callback(BUTTON_MODE_PIN);
+      touch_pressed();
+	}
+}
+
+void EXTI1_IRQHandler(void){
+	/* EXTI line interrupt detected */
+	if(__HAL_GPIO_EXTI_GET_IT(MICROPHONE_DIGITAL_PIN) != RESET){
+		/* clear interrupt pending bits */
+		__HAL_GPIO_EXTI_CLEAR_IT(MICROPHONE_DIGITAL_PIN);
+		/* call callback */
       touch_pressed();
 	}
 }

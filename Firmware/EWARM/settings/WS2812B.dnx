@@ -20,7 +20,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>2979723516</Checksum>
+        <Checksum>3902218721</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -57,8 +57,8 @@
         <ITMlogFile>$PROJ_DIR$\ITM.log</ITMlogFile>
     </SWOTraceHWSettings>
     <PlDriver>
-        <FirstRun>0</FirstRun>
         <MemConfigValue>C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\CONFIG\debugger\ST\STM32F103C8.ddf</MemConfigValue>
+        <FirstRun>0</FirstRun>
     </PlDriver>
     <JLinkDriver>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
@@ -78,6 +78,7 @@
     </array_types>
     <watch_formats>
         <Fmt0>{W}1:level	3	0</Fmt0>
+        <Fmt1>{W}42:ledLevel	3	0</Fmt1>
     </watch_formats>
     <Trace2>
         <Enabled>0</Enabled>
@@ -139,10 +140,6 @@
     <Breakpoints2>
         <Count>0</Count>
     </Breakpoints2>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -174,4 +171,8 @@
         <Probe0>I0</Probe0>
         <ProbeSetup0>2 1 1 2 0 0</ProbeSetup0>
     </PowerProbe>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
 </settings>

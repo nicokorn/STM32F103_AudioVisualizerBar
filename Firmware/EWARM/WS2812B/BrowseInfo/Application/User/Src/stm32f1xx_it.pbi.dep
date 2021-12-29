@@ -1,4 +1,5 @@
 D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\WS2812B\BrowseInfo\Application\User\Src\stm32f1xx_it.pbi: \
+  D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Inc\microphone.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Inc\touch.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Inc\stm32f1xx_it.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
@@ -6,6 +7,8 @@ D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\WS2812B\BrowseInfo\Application\U
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_pwr.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash_ex.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_flash.h \
+  D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h \
+  D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_cortex.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma_ex.h \
   D:\GitHub\STM32F103_EqualizerBar\Firmware\EWARM\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_dma.h \
