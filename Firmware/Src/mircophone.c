@@ -214,7 +214,7 @@ static MICROPHONE_StatusTypeDef init_timer( void )
    __HAL_RCC_TIM3_CLK_ENABLE();
    
    // set prescaler to get a 8kHz clock signal
-   PrescalerValue = (uint16_t) (SystemCoreClock / (SAMPLING_FREQUENCY*10)) - 1;
+   PrescalerValue = (uint16_t) (SystemCoreClock / (SAMPLING_FREQUENCY*100)) - 1;
 
    /* Set timer instance */
    TIM_Handle.Instance = TIM3;
@@ -253,15 +253,29 @@ static MICROPHONE_StatusTypeDef init_timer( void )
 /// \return    uint32_t adc value
 uint32_t microphone_getAdc( void )
 {
-   uint32_t averrage;
-   
-   //HAL_ADC_Start(&ADC_Handle);
+   //uint32_t averrage;
+   //uint16_t counter = 0;
    //
-   //if( HAL_ADC_PollForConversion(&ADC_Handle, 100) == HAL_OK )
+   ////HAL_ADC_Start(&ADC_Handle);
+   ////
+   ////if( HAL_ADC_PollForConversion(&ADC_Handle, 100) == HAL_OK )
+   ////{
+   ////   return HAL_ADC_GetValue(&ADC_Handle);
+   ////}
+   //
+   //for( uint16_t i=1; i<ADC_BUFFER_SIZE-1; i++ )
    //{
-   //   return HAL_ADC_GetValue(&ADC_Handle);
+   //   if( adcValues[i-1] < adcValues[i] && adcValues[i+1] < adcValues[i] )
+   //   {
+   //      averrage += adcValues[i];
+   //      counter++;
+   //   }
    //}
+   //
+   //averrage = averrage/counter;
    
+   uint32_t averrage;
+
    for( uint16_t i=0; i<ADC_BUFFER_SIZE; i++ )
    {
       averrage += adcValues[i];

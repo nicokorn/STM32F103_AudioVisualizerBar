@@ -130,8 +130,8 @@ static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_default[0][0], &effect_
 // Private variables **********************************************************
 static euqalizer_t equalizer;
 //static const float m = ((float)15/(float)4095);
-//static const float m = ((float)15/(float)2395);
-static const float m = ((float)15/(float)2595);
+static const float m = ((float)15/(float)2395);
+//static const float m = ((float)15/(float)2595);
 
 // Functions ******************************************************************
 // ----------------------------------------------------------------------------
@@ -223,9 +223,9 @@ void equalizer_nextEffect( void )
 /// \return    none
 uint8_t equalizer_convert( uint32_t adcValue )
 {   
-   if(adcValue>1500)
+   if(adcValue>1700)
    {
-      adcValue -= 1500;
+      adcValue -= 1700;
    }
    else
    {
