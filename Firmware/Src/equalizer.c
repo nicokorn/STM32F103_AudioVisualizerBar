@@ -54,7 +54,7 @@ typedef __packed struct equalizer_s{
    uint8_t           effectIndex;
    uint8_t           level;
    uint8_t           levelTop;
-   uint8_t           levelTopTime;
+   uint16_t          levelTopTime;
    
 }euqalizer_t;
 
@@ -130,7 +130,8 @@ static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_default[0][0], &effect_
 // Private variables **********************************************************
 static euqalizer_t equalizer;
 //static const float m = ((float)15/(float)4095);
-static const float m = ((float)15/(float)2395);
+//static const float m = ((float)15/(float)2395);
+static const float m = ((float)15/(float)2595);
 
 // Functions ******************************************************************
 // ----------------------------------------------------------------------------
@@ -170,7 +171,7 @@ void equalizer_setLevel( uint8_t level )
    if( equalizer.levelTop < equalizer.level )
    {
       equalizer.levelTop      = equalizer.level;
-      equalizer.levelTopTime  = 40;
+      equalizer.levelTopTime  = 500;
    }
    else if( equalizer.levelTopTime )
    {
@@ -222,9 +223,13 @@ void equalizer_nextEffect( void )
 /// \return    none
 uint8_t equalizer_convert( uint32_t adcValue )
 {   
-   if(adcValue>1700)
+   if(adcValue>1500)
    {
-      adcValue -= 1700;
+      adcValue -= 1500;
+   }
+   else
+   {
+      adcValue=0;
    }
    return (uint8_t)(m*(float)adcValue);
 }

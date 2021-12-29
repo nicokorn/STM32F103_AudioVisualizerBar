@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>5</fileVersion>
-    <fileChecksum>260550427</fileChecksum>
+    <fileChecksum>1405310280</fileChecksum>
     <configuration>
         <name>WS2812B</name>
         <outputs>
@@ -104,6 +104,8 @@
             <file>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h</file>
             <file>$PROJ_DIR$\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_adc.o</file>
             <file>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.c</file>
+            <file>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c</file>
+            <file>$PROJ_DIR$\WS2812B\Obj\Application\EWARM\Drivers\STM32F1xx_HAL_Driver\stm32f1xx_hal_adc_ex.o</file>
         </outputs>
         <file>
             <name>$PROJ_DIR$\WS2812B\Exe\WS2812B.out</name>
@@ -120,7 +122,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 5 35 19 53 47 54 33 97 59 34 8 6 30 28 12 13 56 2 11 17 49 9 36 89 60 61 90 46</file>
+                    <file> 5 35 19 53 47 54 33 97 100 59 34 8 6 30 28 12 13 56 2 11 17 49 9 36 89 60 61 90 46</file>
                 </tool>
             </inputs>
         </file>
@@ -478,6 +480,21 @@
                 <tool>
                     <name>ICCARM</name>
                     <file> 97</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 43 16 24 58 37 26 48 7 44 62 57 21 3 41 20 32 23 14 95 96 18 10 42 55 52 40 25 27 45 38 29 39 4 22 76</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 100</file>
                 </tool>
             </outputs>
             <inputs>

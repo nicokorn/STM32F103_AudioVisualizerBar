@@ -38,6 +38,7 @@
 /* Private user code ---------------------------------------------------------*/
 
 /* External variables --------------------------------------------------------*/
+extern ADC_HandleTypeDef ADC_Handle;
 
 /******************************************************************************/
 /*           Cortex-M3 Processor Interruption and Exception Handlers          */
@@ -196,6 +197,16 @@ void EXTI1_IRQHandler(void){
 		/* call callback */
       touch_pressed();
 	}
+}
+
+void ADC1_2_IRQHandler(void)
+{
+   HAL_ADC_IRQHandler(&ADC_Handle);
+}
+
+void DMA1_Channel1_IRQHandler(void)
+{
+   HAL_DMA_IRQHandler(ADC_Handle.DMA_Handle);
 }
  
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
