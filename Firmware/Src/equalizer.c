@@ -46,7 +46,8 @@
 #include "ws2812b.h"
 
 // Private define *************************************************************
-#define NR_OF_EFFECTS   ( 4u )
+#define NR_OF_EFFECTS     ( 5u )
+#define EFFECT_OPT_FADE   ( 0x01 )
 
 // Private types     **********************************************************
 typedef __packed struct equalizer_s{
@@ -59,79 +60,99 @@ typedef __packed struct equalizer_s{
 }euqalizer_t;
 
 // Private variables **********************************************************
-static const uint8_t effect_default[COL][3] =  { { 0x00, 0xff, 0x00 },     // green
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0xff, 0x80, 0x00 },
-                                                 { 0xff, 0x80, 0x00 },
-                                                 { 0xff, 0x80, 0x00 },
-                                                 { 0xff, 0x80, 0x00 },
-                                                 { 0xff, 0x00, 0x00 } };    // red
+static const uint8_t effect_default[COL+1][3] =  { { 0x00, 0xff, 0x00 },     // green
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0xff, 0x80, 0x00 },
+                                                   { 0xff, 0x80, 0x00 },
+                                                   { 0xff, 0x80, 0x00 },
+                                                   { 0xff, 0x80, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },      // red
+                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
 
-static const uint8_t effect_red[COL][3] =      { { 0xff, 0x00, 0x00 },     
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 },
-                                                 { 0xff, 0x00, 0x00 } };   
+static const uint8_t effect_red[COL+1][3] =      { { 0xff, 0x00, 0x00 },     
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0xff, 0x00, 0x00 },
+                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
 
-static const uint8_t effect_green[COL][3] =    { { 0x00, 0xff, 0x00 },     
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 },
-                                                 { 0x00, 0xff, 0x00 } };  
+static const uint8_t effect_green[COL+1][3] =    { { 0x00, 0xff, 0x00 },     
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0xff, 0x00 },
+                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
 
-static const uint8_t effect_blue[COL][3] =     { { 0x00, 0x00, 0xff },     
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff },
-                                                 { 0x00, 0x00, 0xff } };  
+static const uint8_t effect_blue[COL+1][3] =     { { 0x00, 0x00, 0xff },     
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0xff },
+                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
 
-static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_default[0][0], &effect_red[0][0], &effect_green[0][0], &effect_blue[0][0] };
+static const uint8_t effect_funny[COL+1][3] =    { { 0x00, 0x00, 0x11 },     
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x00, 0x00, 0x11 },
+                                                   { 0x01, 0x00, 0x00 } };    // effect option flags
+
+static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_default[0][0], &effect_red[0][0], &effect_green[0][0], &effect_blue[0][0], &effect_funny[0][0] };
                                                            
 // Private function prototypes ************************************************
 
 // Private variables **********************************************************
 static euqalizer_t equalizer;
-//static const float m = ((float)15/(float)4095);
-static const float m = ((float)15/(float)2395);
-//static const float m = ((float)15/(float)2595);
+//static const float m = ((float)15/(float)2395);
+static const float m = ((float)15/(float)2048);
 
 // Functions ******************************************************************
 // ----------------------------------------------------------------------------
@@ -159,6 +180,9 @@ EQUALIZER_StatusTypeDef equalizer_init( void )
 /// \return    none
 void equalizer_setLevel( uint8_t level )
 {   
+   static uint8_t topLevelBarCounter;
+   topLevelBarCounter++;
+   
    if( level >= COL )
    {
       return;
@@ -171,13 +195,13 @@ void equalizer_setLevel( uint8_t level )
    if( equalizer.levelTop < equalizer.level )
    {
       equalizer.levelTop      = equalizer.level;
-      equalizer.levelTopTime  = 500;
+      equalizer.levelTopTime  = 250;
    }
    else if( equalizer.levelTopTime )
    {
       equalizer.levelTopTime--;
    }
-   else if( equalizer.levelTop > 0 )
+   else if( equalizer.levelTop > 0 && topLevelBarCounter%2 )
    {
       equalizer.levelTop--;
    }
@@ -186,7 +210,14 @@ void equalizer_setLevel( uint8_t level )
    WS2812B_clearBuffer();
    for( uint8_t i=0; i<level; i++ )
    {
-      WS2812B_setPixel( 0, i, *(equalizer.effect+i*3+0), *(equalizer.effect+i*3+1), *(equalizer.effect+i*3+2) ); 
+      if( EFFECT_OPT_FADE == *(equalizer.effect+COL*3+0))
+      {
+         WS2812B_setPixel( 0, i, *(equalizer.effect+i*3+0)*level, *(equalizer.effect+i*3+1)*level, *(equalizer.effect+i*3+2)*level ); 
+      }
+      else
+      {
+         WS2812B_setPixel( 0, i, *(equalizer.effect+i*3+0), *(equalizer.effect+i*3+1), *(equalizer.effect+i*3+2) ); 
+      }
    }
    WS2812B_setPixel( 0, equalizer.levelTop, 0xFF, 0x00, 0x00 ); 
    WS2812B_sendBuffer();
@@ -222,14 +253,6 @@ void equalizer_nextEffect( void )
 ///
 /// \return    none
 uint8_t equalizer_convert( uint32_t adcValue )
-{   
-   if(adcValue>1700)
-   {
-      adcValue -= 1700;
-   }
-   else
-   {
-      adcValue=0;
-   }
+{  
    return (uint8_t)(m*(float)adcValue);
 }

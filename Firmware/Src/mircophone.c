@@ -85,10 +85,10 @@ MICROPHONE_StatusTypeDef microphone_init( void )
      return MICROPHONE_ERROR;
    }
   
-   //if( HAL_ADCEx_Calibration_Start(&ADC_Handle) != HAL_OK )
-   //{
-   //   return MICROPHONE_ERROR;
-   //}
+   if( HAL_ADCEx_Calibration_Start(&ADC_Handle) != HAL_OK )
+   {
+      return MICROPHONE_ERROR;
+   }
    
    // Timer enable 
    if( HAL_TIM_Base_Start(&TIM_Handle) != HAL_OK )
@@ -246,39 +246,30 @@ static MICROPHONE_StatusTypeDef init_timer( void )
 }
 
 // ----------------------------------------------------------------------------
-/// \brief     Make an adc measurement.
+/// \brief     Calculate averrage from array. It's faster than square rooting
+///            and the difference is minor.
 ///
 /// \param     none
 ///
 /// \return    uint32_t adc value
 uint32_t microphone_getAdc( void )
 {
-   //uint32_t averrage;
-   //uint16_t counter = 0;
-   //
-   ////HAL_ADC_Start(&ADC_Handle);
-   ////
-   ////if( HAL_ADC_PollForConversion(&ADC_Handle, 100) == HAL_OK )
-   ////{
-   ////   return HAL_ADC_GetValue(&ADC_Handle);
-   ////}
-   //
-   //for( uint16_t i=1; i<ADC_BUFFER_SIZE-1; i++ )
-   //{
-   //   if( adcValues[i-1] < adcValues[i] && adcValues[i+1] < adcValues[i] )
-   //   {
-   //      averrage += adcValues[i];
-   //      counter++;
-   //   }
-   //}
-   //
-   //averrage = averrage/counter;
-   
    uint32_t averrage;
+   int16_t adcValue;
 
    for( uint16_t i=0; i<ADC_BUFFER_SIZE; i++ )
    {
-      averrage += adcValues[i];
+      adcValue = adcValues[i];
+      adcValue -= 2048u;
+      if( adcValue < 0 )
+      {
+         averrage += -1*adcValue;
+      }
+      else
+      {
+         averrage += adcValue;
+      }
+      
    }
    
    averrage = averrage>>6;
