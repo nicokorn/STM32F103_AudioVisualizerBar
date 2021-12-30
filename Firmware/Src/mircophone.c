@@ -272,7 +272,12 @@ uint32_t microphone_getAdc( void )
       
    }
    
-   averrage = averrage>>6;
+   averrage = averrage>>5;
+   
+   if( averrage > 2048u )
+   {
+      averrage = 2048u;
+   }
    
    return averrage;
 }

@@ -20,7 +20,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>2175034420</Checksum>
+        <Checksum>1831810696</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -80,6 +80,7 @@
         <Fmt0>{W}1:level	3	0</Fmt0>
         <Fmt1>{W}42:led	3	0</Fmt1>
         <Fmt2>{W}42:ledLevel	3	0</Fmt2>
+        <Fmt3>{W}42:topLevelBarCounter	3	0</Fmt3>
     </watch_formats>
     <Trace2>
         <Enabled>0</Enabled>
@@ -135,12 +136,6 @@
         <ShowTimeSum>1</ShowTimeSum>
         <SumSortOrder>0</SumSortOrder>
     </EventLog>
-    <DisassembleMode>
-        <mode>0</mode>
-    </DisassembleMode>
-    <Breakpoints2>
-        <Count>0</Count>
-    </Breakpoints2>
     <TermIOLog>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -150,14 +145,6 @@
         <LogFile>_ ""</LogFile>
         <Category>_ 0</Category>
     </LogFile>
-    <Aliases>
-        <A0>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\startup_stm32f103xb.s" "D:\GitHub\STM32F1XX_WS2812B\EWARM\startup_stm32f103xb.s"</A0>
-        <A1>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c" "D:\GitHub\STM32F1XX_WS2812B\Src\stm32f1xx_it.c"</A1>
-        <A2>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c"</A2>
-        <A3>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Src\stm32f1xx_it.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c"</A3>
-        <Count>4</Count>
-        <SuppressDialog>1</SuppressDialog>
-    </Aliases>
     <DriverProfiling>
         <Enabled>0</Enabled>
         <Mode>3</Mode>
@@ -176,4 +163,18 @@
         <Probe0>I0</Probe0>
         <ProbeSetup0>2 1 1 2 0 0</ProbeSetup0>
     </PowerProbe>
+    <DisassembleMode>
+        <mode>0</mode>
+    </DisassembleMode>
+    <Breakpoints2>
+        <Count>0</Count>
+    </Breakpoints2>
+    <Aliases>
+        <A0>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\EWARM\startup_stm32f103xb.s" "D:\GitHub\STM32F1XX_WS2812B\EWARM\startup_stm32f103xb.s"</A0>
+        <A1>_ "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c" "D:\GitHub\STM32F1XX_WS2812B\Src\stm32f1xx_it.c"</A1>
+        <A2>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c"</A2>
+        <A3>_ "C:\Users\nico1\Documents\Projekte\WS2812B\WS2812B\Src\stm32f1xx_it.c" "C:\Users\nico1\Documents\Projekte\WS2812B\ST\Src\stm32f1xx_it.c"</A3>
+        <Count>4</Count>
+        <SuppressDialog>1</SuppressDialog>
+    </Aliases>
 </settings>
