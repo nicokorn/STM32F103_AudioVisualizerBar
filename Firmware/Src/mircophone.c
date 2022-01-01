@@ -9,9 +9,9 @@
 ///
 /// \version   1.0.0.0
 ///
-/// \date      27122021
+/// \date      01012022
 /// 
-/// \copyright Copyright (c) 2021 Nico Korn
+/// \copyright Copyright (c) 2022 Nico Korn
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@
 #include "microphone.h"
 
 // Private define *************************************************************
-#define ADC_BUFFER_SIZE          ( 64u )      // Size of array containing ADC converted values
+#define ADC_BUFFER_SIZE          ( 8u )      // Size of array containing ADC converted values
 #define SAMPLING_FREQUENCY       ( 8000u )    // 8 kHz
 
 // Private types     **********************************************************
@@ -214,7 +214,7 @@ static MICROPHONE_StatusTypeDef init_timer( void )
    __HAL_RCC_TIM3_CLK_ENABLE();
    
    // set prescaler to get a 8kHz clock signal
-   PrescalerValue = (uint16_t) (SystemCoreClock / (SAMPLING_FREQUENCY*100)) - 1;
+   PrescalerValue = (uint16_t) (SystemCoreClock / (SAMPLING_FREQUENCY*10)) - 1;
 
    /* Set timer instance */
    TIM_Handle.Instance = TIM3;
@@ -246,7 +246,7 @@ static MICROPHONE_StatusTypeDef init_timer( void )
 }
 
 // ----------------------------------------------------------------------------
-/// \brief     Calculate averrage from array. It's faster than square rooting
+/// \brief     Calculate averrage from samples. It's faster than square rooting
 ///            and the difference is minor.
 ///
 /// \param     none
@@ -259,8 +259,13 @@ uint32_t microphone_getAdc( void )
 
    for( uint16_t i=0; i<ADC_BUFFER_SIZE; i++ )
    {
+      // get adc value
       adcValue = adcValues[i];
+      
+      // substract half of the resolution to have a zero line
       adcValue -= 2048u;
+      
+      // sum up the absolute value
       if( adcValue < 0 )
       {
          averrage += -1*adcValue;
@@ -272,7 +277,8 @@ uint32_t microphone_getAdc( void )
       
    }
    
-   averrage = averrage>>5;
+   // divide the summed up value to have the averrage
+   averrage = averrage>>3;
    
    if( averrage > 2048u )
    {

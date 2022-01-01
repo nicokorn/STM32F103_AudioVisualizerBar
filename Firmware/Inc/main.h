@@ -32,9 +32,9 @@
 ///
 /// \version   1.0.0.0
 ///
-/// \date      24032021
+/// \date      01012022
 /// 
-/// \copyright Copyright (c) 2021 Nico Korn
+/// \copyright Copyright (c) 2022 Nico Korn
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal

@@ -9,9 +9,9 @@
 ///
 /// \version   1.0.0.0
 ///
-/// \date      24032021
+/// \date      01012022
 /// 
-/// \copyright Copyright (c) 2021 Nico Korn
+/// \copyright Copyright (c) 2022 Nico Korn
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@
 
 // Private types     **********************************************************
 /* WS2812 GPIO output buffer size */
-#define GPIO_BUFFERSIZE         ROW*COL*24u   // see ROW as LED stripe number and COL LED pixel number on the stripe
+#define GPIO_BUFFERSIZE ROW*COL*24u   // see ROW as LED stripe number and COL LED pixel number on the stripe
 
 // Private variables **********************************************************
 static const uint16_t                 WS2812_High  = 0xFFFF;
@@ -77,7 +77,7 @@ static void                     WS2812_TIM2_callback    ( void );
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    WS2812B_StatusTypeDef
 WS2812B_StatusTypeDef WS2812B_init( void )
 {   
    // init peripherals
@@ -110,7 +110,7 @@ WS2812B_StatusTypeDef WS2812B_init( void )
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    WS2812B_StatusTypeDef
 static WS2812B_StatusTypeDef init_timer( void )
 {
    TIM_OC_InitTypeDef           TIM_OC1Struct;          // cc1
@@ -168,7 +168,7 @@ static WS2812B_StatusTypeDef init_timer( void )
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    WS2812B_StatusTypeDef
 static WS2812B_StatusTypeDef init_dma( void )
 {
    // activate bus on which dma1 is connected
@@ -237,7 +237,7 @@ static WS2812B_StatusTypeDef init_dma( void )
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    WS2812B_StatusTypeDef
 static WS2812B_StatusTypeDef init_gpio( void )
 {
    __HAL_RCC_GPIOA_CLK_ENABLE();                        //enable clock on the bus

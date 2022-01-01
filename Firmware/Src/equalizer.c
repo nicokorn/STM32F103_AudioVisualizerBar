@@ -9,9 +9,9 @@
 ///
 /// \version   1.0.0.0
 ///
-/// \date      27122021
+/// \date      01012022
 /// 
-/// \copyright Copyright (c) 2021 Nico Korn
+/// \copyright Copyright (c) 2022 Nico Korn
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -59,7 +59,6 @@ typedef __packed struct equalizer_s{
    uint8_t           levelFil;
    uint16_t          levelTopTime;
    uint16_t          levelFilTime;
-   
 }euqalizer_t;
 
 // Private variables **********************************************************
@@ -131,30 +130,12 @@ static const uint8_t effect_4[COL+1][3] =        { { 0xff, 0xff, 0x00 },
                                                    { 0x11, 0xff, 0xee },
                                                    { 0x00, 0x00, 0x00 } };    // effect option flags
 
-static const uint8_t effect_funny[COL+1][3] =    { { 0x00, 0x00, 0x11 },     
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x00, 0x00, 0x11 },
-                                                   { 0x01, 0x00, 0x00 } };    // effect option flags
-
 static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_1[0][0], &effect_2[0][0], &effect_3[0][0], &effect_4[0][0] };
                                                            
 // Private function prototypes ************************************************
 
 // Private variables **********************************************************
 static euqalizer_t equalizer;
-//static const float m = ((float)15/(float)2395);
 static const float m = ((float)15/(float)2048);
 
 // Functions ******************************************************************
