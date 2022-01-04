@@ -46,13 +46,14 @@
 
 // Private define *************************************************************
 #define ADC_BUFFER_SIZE          ( 8u )      // Size of array containing ADC converted values
-#define SAMPLING_FREQUENCY       ( 8000u )    // 8 kHz
+#define SAMPLING_FREQUENCY       ( 8000u )   // 8 kHz
 
 // Private types     **********************************************************
 
 // Private variables **********************************************************
 /* Variable containing ADC conversions results */
-static uint16_t adcValues[ADC_BUFFER_SIZE];
+static uint16_t      adcValues[ADC_BUFFER_SIZE];
+static FlagStatus    adcValuesReady;
 
 // Private function prototypes ************************************************
 static MICROPHONE_StatusTypeDef init_adc     ( void );
@@ -71,7 +72,7 @@ DMA_HandleTypeDef DMA_Handle_ADC;
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    MICROPHONE_StatusTypeDef
 MICROPHONE_StatusTypeDef microphone_init( void )
 {   
    // init peripherals
@@ -113,6 +114,8 @@ MICROPHONE_StatusTypeDef microphone_init( void )
 /// \return    MICROPHONE_StatusTypeDef
 static MICROPHONE_StatusTypeDef init_adc( void )
 {
+   adcValuesReady = RESET;
+   
    GPIO_InitTypeDef           GPIO_InitStruct   = {0};
    ADC_ChannelConfTypeDef     sConfig           = {0};
    RCC_PeriphCLKInitTypeDef   PeriphClkInit     = {0};
@@ -121,39 +124,28 @@ static MICROPHONE_StatusTypeDef init_adc( void )
    __HAL_RCC_GPIOB_CLK_ENABLE();
 
    // Microphone analog GPIO init
-   GPIO_InitStruct.Pin              = MICROPHONE_ANALOG_PIN;
-   GPIO_InitStruct.Mode             = GPIO_MODE_ANALOG;
+   GPIO_InitStruct.Pin                    = MICROPHONE_ANALOG_PIN;
+   GPIO_InitStruct.Mode                   = GPIO_MODE_ANALOG;
    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-   
-	// Microphone digital GPIO init
-	//__HAL_RCC_GPIOB_CLK_ENABLE();                   
-	//GPIO_InitTypeDef GPIO_InitStruct_Digital;
-	//GPIO_InitStruct_Digital.Pin 		= MICROPHONE_DIGITAL_PIN; 	
-	//GPIO_InitStruct_Digital.Mode 		= GPIO_MODE_IT_FALLING; 			
-	//GPIO_InitStruct_Digital.Pull 		= GPIO_NOPULL;							
-	//HAL_GPIO_Init(GPIOB, &GPIO_InitStruct_Digital);
-   //
-	//HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
-	//HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 
    // ADC init
-   ADC_Handle.Instance = ADC1;
-   ADC_Handle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
-   ADC_Handle.Init.ScanConvMode          = ADC_SCAN_DISABLE;              /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
-   ADC_Handle.Init.ContinuousConvMode    = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
-   ADC_Handle.Init.NbrOfConversion       = 1;                             /* Parameter discarded because sequencer is disabled */
-   ADC_Handle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded because sequencer is disabled */
-   ADC_Handle.Init.NbrOfDiscConversion   = 1;                             /* Parameter discarded because sequencer is disabled */
-   ADC_Handle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T3_TRGO;  /* Trig of conversion start done by external event */
+   ADC_Handle.Instance                    = ADC1;
+   ADC_Handle.Init.DataAlign              = ADC_DATAALIGN_RIGHT;
+   ADC_Handle.Init.ScanConvMode           = ADC_SCAN_DISABLE;              /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
+   ADC_Handle.Init.ContinuousConvMode     = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
+   ADC_Handle.Init.NbrOfConversion        = 1;                             /* Parameter discarded because sequencer is disabled */
+   ADC_Handle.Init.DiscontinuousConvMode  = DISABLE;                       /* Parameter discarded because sequencer is disabled */
+   ADC_Handle.Init.NbrOfDiscConversion    = 1;                             /* Parameter discarded because sequencer is disabled */
+   ADC_Handle.Init.ExternalTrigConv       = ADC_EXTERNALTRIGCONV_T3_TRGO;  /* Trig of conversion start done by external event */
 
    if( HAL_ADC_Init(&ADC_Handle) != HAL_OK )
    {
       return MICROPHONE_ERROR;
    }
    
-   sConfig.Channel                        = ADC_CHANNEL_8;
-   sConfig.Rank                           = ADC_REGULAR_RANK_1;
-   sConfig.SamplingTime                   = ADC_SAMPLETIME_1CYCLE_5;
+   sConfig.Channel                         = ADC_CHANNEL_8;
+   sConfig.Rank                            = ADC_REGULAR_RANK_1;
+   sConfig.SamplingTime                    = ADC_SAMPLETIME_1CYCLE_5;
    if( HAL_ADC_ConfigChannel(&ADC_Handle, &sConfig) != HAL_OK )
    {
       return MICROPHONE_ERROR;
@@ -256,6 +248,9 @@ uint32_t microphone_getAdc( void )
 {
    uint32_t averrage;
    int16_t adcValue;
+   
+   while( adcValuesReady != SET );
+   adcValuesReady = RESET;
 
    for( uint16_t i=0; i<ADC_BUFFER_SIZE; i++ )
    {
@@ -278,7 +273,7 @@ uint32_t microphone_getAdc( void )
    }
    
    // divide the summed up value to have the averrage
-   averrage = averrage>>3;
+   averrage = averrage>>2; // shift 3 would be correct, for more sensivity i divide with 4
    
    if( averrage > 2048u )
    {
@@ -286,4 +281,19 @@ uint32_t microphone_getAdc( void )
    }
    
    return averrage;
+}
+
+// ----------------------------------------------------------------------------
+/// \brief     ADC convertion complete callback function.
+///            Since the timer triggered ADC is set to 8 kHz and has to do
+///            8 samples for completion 1 millisecond is needed:
+///            T_sample = 1/f = 1/8 kHz = 0.000125 s
+///            T_cplt = 8 * 0.000125 s = 0.001 s 
+///
+/// \param     none
+///
+/// \return    uint32_t adc value
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+   adcValuesReady = SET;
 }

@@ -171,6 +171,8 @@ void equalizer_setLevel( uint8_t level )
    levelFilCounter++;
    static uint8_t levelTopCounter;
    levelTopCounter++;
+   static uint8_t test;
+   test++;
    
    if( level >= COL )
    {
@@ -188,33 +190,33 @@ void equalizer_setLevel( uint8_t level )
       equalizer.level = level;
    }
    
-   // set fil level
+   // set filled level bar
    if( equalizer.levelFil < equalizer.level )
    {
       equalizer.levelFil      = equalizer.level;
-      equalizer.levelFilTime  = 25;
+      equalizer.levelFilTime  = 50;
    }
    else if( equalizer.levelFilTime )
    {
       equalizer.levelFilTime--;
    }
-   else if( equalizer.levelFil > 0 && !(levelFilCounter%15) )
+   else if( equalizer.levelFil > 0 && !(levelFilCounter%30) )
    {
       equalizer.levelFil--;
       levelFilCounter = 0;
    }
 
-   // set top level
-   if( equalizer.levelTop < equalizer.levelFil )
+   // set max top level bar
+   if( equalizer.levelTop <= equalizer.levelFil )
    {
-      equalizer.levelTop      = equalizer.level;
-      equalizer.levelTopTime  = 125;
+      equalizer.levelTop      = equalizer.levelFil;
+      equalizer.levelTopTime  = 100;
    }
    else if( equalizer.levelTopTime )
    {
       equalizer.levelTopTime--;
    }
-   else if( equalizer.levelTop > 0 && !(levelTopCounter%40) )
+   else if( equalizer.levelTop > 0 && !(levelTopCounter%80) )
    {
       equalizer.levelTop--;
       levelTopCounter = 0;
@@ -233,23 +235,12 @@ void equalizer_setLevel( uint8_t level )
          WS2812B_setPixel( 0, i, *(equalizer.effect+i*3+0), *(equalizer.effect+i*3+1), *(equalizer.effect+i*3+2) ); 
       }
    }
-   WS2812B_setPixel( 0, equalizer.levelTop, 0xFF, 0x00, 0x00 ); 
+   WS2812B_setPixel( 0, equalizer.levelTop, 0xFF, 0x00, 0x00 );
    WS2812B_sendBuffer();
 }
 
 // ----------------------------------------------------------------------------
-/// \brief     Clear equalizer bar level.
-///
-/// \param     none
-///
-/// \return    none
-void equalizer_clear( void )
-{   
-
-}
-
-// ----------------------------------------------------------------------------
-/// \brief     Choose next effect
+/// \brief     Choose next effect.
 ///
 /// \param     none
 ///
