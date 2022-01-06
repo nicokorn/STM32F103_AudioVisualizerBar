@@ -37,6 +37,7 @@ https://www.youtube.com/watch?v=lWBqOENIxeE
 <p>Finish</p>
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/outside1.jpg" alt="outside1">
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/outside2.jpg" alt="outside2">
+<img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/outside3.jpg" alt="outside3">
 
 </body>
 </html>
