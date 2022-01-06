@@ -1,4 +1,4 @@
-# STM32F103_EqualizerBar
+# STM32F103_AudioVisualizerBar
 
 <html>
 <body>
