@@ -13,6 +13,9 @@
 
 <br>
 
+<h2>Video</h2>
+https://www.youtube.com/watch?v=RZCC-pTSQWE
+
 <h2>Pictures</h2>
 <p>Housing design in Autocad</p>
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/AutoCad1.PNG" alt="autocad1">
