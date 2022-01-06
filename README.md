@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=lWBqOENIxeE
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/3dPrint1.PNG" alt="3d1">
 <p>3D printing result</p>
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/3dresult.jpg" alt="result">
-<p>Mountig led stripe</p>
+<p>Mounting led stripe</p>
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/led1.jpg" alt="led1">
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/led2.jpg" alt="led2">
 <img src="https://github.com/nicokorn/STM32F103_AudioVisualizerBar/blob/main/docs/led3.jpg" alt="led3">
