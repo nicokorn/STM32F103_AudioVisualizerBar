@@ -77,7 +77,7 @@ static const uint8_t effect_1[COL+1][3] =        { { 0x00, 0xff, 0x00 },     // 
                                                    { 0xff, 0x80, 0x00 },
                                                    { 0xff, 0x80, 0x00 },
                                                    { 0xff, 0x00, 0x00 },      // red
-                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
+                                                   { 0x00, 0x00, 0x00 } };    // reserved effect option flags
 
 static const uint8_t effect_2[COL+1][3] =        { { 0x00, 0x00, 0xff },     
                                                    { 0x11, 0x00, 0xee },
@@ -94,7 +94,7 @@ static const uint8_t effect_2[COL+1][3] =        { { 0x00, 0x00, 0xff },
                                                    { 0xdd, 0x00, 0x22 },
                                                    { 0xee, 0x00, 0x11 },
                                                    { 0xff, 0x00, 0x00 },
-                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
+                                                   { 0x00, 0x00, 0x00 } };    // reserved effect option flags
 
 static const uint8_t effect_3[COL+1][3] =        { { 0x00, 0xff, 0x00 },
                                                    { 0x00, 0xee, 0x11 },
@@ -111,7 +111,7 @@ static const uint8_t effect_3[COL+1][3] =        { { 0x00, 0xff, 0x00 },
                                                    { 0x00, 0x33, 0xcc },
                                                    { 0x00, 0x22, 0xdd },
                                                    { 0x00, 0x11, 0xee },
-                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
+                                                   { 0x00, 0x00, 0x00 } };    // reserved effect option flags
 
 static const uint8_t effect_4[COL+1][3] =        { { 0xff, 0xff, 0x00 },     
                                                    { 0xee, 0xff, 0x11 },
@@ -128,7 +128,7 @@ static const uint8_t effect_4[COL+1][3] =        { { 0xff, 0xff, 0x00 },
                                                    { 0x33, 0xff, 0xcc },
                                                    { 0x22, 0xff, 0xdd },
                                                    { 0x11, 0xff, 0xee },
-                                                   { 0x00, 0x00, 0x00 } };    // effect option flags
+                                                   { 0x00, 0x00, 0x00 } };    // reserved effect option flags
 
 static const uint8_t *effects[NR_OF_EFFECTS] = { &effect_1[0][0], &effect_2[0][0], &effect_3[0][0], &effect_4[0][0] };
                                                            
@@ -140,11 +140,11 @@ static const float m = ((float)15/(float)2048);
 
 // Functions ******************************************************************
 // ----------------------------------------------------------------------------
-/// \brief     Initialisation of the graphic equalizer.
+/// \brief     Initialisation of the graphic equalizer/visualizer.
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    EQUALIZER_StatusTypeDef
 EQUALIZER_StatusTypeDef equalizer_init( void )
 {   
    equalizer.levelFil      = 0;
@@ -162,7 +162,7 @@ EQUALIZER_StatusTypeDef equalizer_init( void )
 // ----------------------------------------------------------------------------
 /// \brief     Set equalizer bar level.
 ///
-/// \param     none
+/// \param     [in]  uint8_t level
 ///
 /// \return    none
 void equalizer_setLevel( uint8_t level )
@@ -171,8 +171,6 @@ void equalizer_setLevel( uint8_t level )
    levelFilCounter++;
    static uint8_t levelTopCounter;
    levelTopCounter++;
-   static uint8_t test;
-   test++;
    
    if( level >= COL )
    {
@@ -255,9 +253,9 @@ void equalizer_nextEffect( void )
 // ----------------------------------------------------------------------------
 /// \brief     Convert adc value to 15 leds.
 ///
-/// \param     none
+/// \param     [in] uint32_t adcValue
 ///
-/// \return    none
+/// \return    uint8_t led level
 uint8_t equalizer_convert( uint32_t adcValue )
 {  
    return (uint8_t)(m*(float)adcValue);

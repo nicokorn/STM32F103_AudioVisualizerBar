@@ -15,7 +15,7 @@
 ///            same time by the peripherals. The main loop is used to averrage
 ///            the sampled adc values, convert them into the visualizer bar
 ///            level and triggering the peripherals to start write led data
-///            into the led stripe.
+///            into the led stripe. 
 ///
 /// \author    Nico Korn
 ///
@@ -84,7 +84,7 @@ void  SystemClock_Config(void);
 ///
 /// \param     none
 ///
-/// \return    none
+/// \return    int
 int main( void )
 {
    // Reset of all peripherals, Initializes the Flash interface and the Systick.
