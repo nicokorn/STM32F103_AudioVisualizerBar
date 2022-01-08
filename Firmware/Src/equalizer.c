@@ -3,7 +3,7 @@
 ///
 /// \brief     equalizer C Source File
 ///
-/// \details   Driver Module for equalizer leds.
+/// \details   Module for equalizer leds.
 ///
 /// \author    Nico Korn
 ///

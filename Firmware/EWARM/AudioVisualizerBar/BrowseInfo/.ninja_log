@@ -242,3 +242,14 @@
 1420	1719	6633400836794315	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar_part3.pbi	4e903fa98426bfea
 1724	1955	6633400839146559	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar.pbd	c1a94ab7740aa6da
 1959	3270	6633400851959345	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar.pbw	7148e54860d9b90a
+3	247	6633406187929450	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/equalizer.pbi	11942fdf26628b50
+18	255	6633406188009237	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/stm32f1xx_hal_msp.pbi	eaa1f993f469685d
+10	257	6633406188029187	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/mircophone.pbi	61990d35d126e4ce
+31	268	6633406188137865	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/ws2812b.pbi	793540fb2b17c200
+44	274	6633406188197707	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/stm32f1xx_it.pbi	5c878ee05cd73ecf
+58	283	6633406188287463	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/touch.pbi	ba2cabd2404adbf3
+72	306	6633406188526830	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/Application/User/Src/main.pbi	ce4d5629251ccfe8
+286	454	6633406190002875	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar_part4.pbi	6c73a73d40b1ebb7
+308	559	6633406191050912	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar_part3.pbi	4e903fa98426bfea
+565	781	6633406193274957	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar.pbd	c1a94ab7740aa6da
+785	2053	6633406205589178	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/BrowseInfo/AudioVisualizerBar.pbw	7148e54860d9b90a

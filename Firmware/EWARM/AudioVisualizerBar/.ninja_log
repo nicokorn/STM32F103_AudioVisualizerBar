@@ -78,3 +78,12 @@
 944	2822	6633400939615537	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/EWARM/Drivers/STM32F1xx_HAL_Driver/stm32f1xx_hal_tim.o	9c8ede1ac7f0894e
 2830	2908	6633400940564444	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Exe/AudioVisualizerBar.out	7267ba067bec9d88
 2927	2949	6633400941037306	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Exe/AudioVisualizerBar.hex	2d0adc88e388d6d8
+1	340	6633406613189938	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/main.o	64220676654f6334
+20	415	6633406613957942	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/equalizer.o	81124e97a9a8e5ff
+10	426	6633406613997824	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/mircophone.o	93ecb54f6fd4fd08
+33	446	6633406614216921	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/stm32f1xx_it.o	d5f2cc8f58d29e4c
+47	453	6633406614287041	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/touch.o	4575260e7d5de109
+81	522	6633406615045034	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/stm32f1xx_hal_msp.o	a0fc425c9af2ea25
+64	643	6633406616261770	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Obj/Application/User/Src/ws2812b.o	df0524982be7bf63
+652	740	6633406617246361	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Exe/AudioVisualizerBar.out	7267ba067bec9d88
+767	791	6633406617824068	D:/GitHub/STM32F103_EqualizerBar/Firmware/EWARM/AudioVisualizerBar/Exe/AudioVisualizerBar.hex	2d0adc88e388d6d8

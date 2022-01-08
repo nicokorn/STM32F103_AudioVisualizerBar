@@ -3,7 +3,7 @@
 ///
 /// \brief     WS2812B C Source File
 ///
-/// \details   Driver Module for WS2812B leds.
+/// \details   Driver for WS2812B leds.
 ///
 /// \author    Nico Korn
 ///

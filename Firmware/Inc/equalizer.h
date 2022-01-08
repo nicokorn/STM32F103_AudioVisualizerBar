@@ -3,7 +3,7 @@
 ///
 /// \brief     equalizerC HeaderFile
 ///
-/// \details   Driver Module for equalizer.
+/// \details   Module for equalizer.
 ///
 /// \author    Nico Korn
 ///
