@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>5</fileVersion>
-    <fileChecksum>1405310280</fileChecksum>
+    <fileChecksum>711617756</fileChecksum>
     <configuration>
         <name>WS2812B</name>
         <outputs>

@@ -52,12 +52,12 @@
 
 // Private variables **********************************************************
 /* Variable containing ADC conversions results */
-static uint16_t      adcValues[ADC_BUFFER_SIZE];
-static FlagStatus    adcValuesReady;
+static uint16_t                  adcValues[ADC_BUFFER_SIZE];
+static volatile FlagStatus       adcValuesReady;
 
 // Private function prototypes ************************************************
-static MICROPHONE_StatusTypeDef init_adc     ( void );
-static MICROPHONE_StatusTypeDef init_timer   ( void );
+static MICROPHONE_StatusTypeDef  init_adc     ( void );
+static MICROPHONE_StatusTypeDef  init_timer   ( void );
 
 // Global variables ***********************************************************
 ADC_HandleTypeDef ADC_Handle;
@@ -269,11 +269,10 @@ uint32_t microphone_getAdc( void )
       {
          averrage += adcValue;
       }
-      
    }
    
    // divide the summed up value to have the averrage
-   averrage = averrage>>2; // shift 3 would be correct, for more sensivity i divide with 4
+   averrage = averrage>>2; // shift 3 would be correct, for more sensivity I divide with 4
    
    if( averrage > 2048u )
    {
@@ -284,7 +283,7 @@ uint32_t microphone_getAdc( void )
 }
 
 // ----------------------------------------------------------------------------
-/// \brief     ADC convertion complete callback function.
+/// \brief     ADC conversion complete callback function.
 ///            Since the timer triggered ADC is set to 8 kHz and has to do
 ///            8 samples for completion 1 millisecond is needed:
 ///            T_sample = 1/f = 1/8 kHz = 0.000125 s
