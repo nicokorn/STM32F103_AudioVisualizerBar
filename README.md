@@ -4,12 +4,12 @@
 <body>
 <h3>DIY AudioVisualizer Bar</h3>
 
-<p>This is the repository for the do it yoursef audio visualizer bar.</p>
+<p>This is the repository for the DIY audio visualizer bar.</p>
 <p>You will find here:</p> 
-<p>- Stl and dwg files for the housing</p>
+<p>- .stl and .dwg files for the housing</p>
 <p>- IAR project and firmware image for the Blue Pill Board</p>
-<p>- Wiring diagramm of the electronics</p>
-<p>- Several pictures of the building process</p>
+<p>- wiring diagramm of the electronics</p>
+<p>- several pictures of the building process</p>
 
 <br>
 
